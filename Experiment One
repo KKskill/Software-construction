@@ -1,0 +1,91 @@
+import java.util.Random;
+public class Count {
+	static int[] number1=new int[51];//记录每个算术题的数字
+	static int[] number2=new int[51];//记录每个算术题的数字
+	static int[] number3=new int[51];//记录每个算术题的结果
+	public static void main(String[] args) {
+		int num1;int num2;
+		//随机的两个数
+		int j;int k;
+		//循环比较
+		Random r=new Random();
+		System.out.println("习题:");
+		for(int i=1;i<=50;i++)
+			//五十道计算题
+		{
+			num1=r.nextInt(101);
+			num2=r.nextInt(101);
+			number1[i]=num1;
+			number2[i]=num2;
+			int f1=r.nextInt(2);
+			if(f1==1)
+				//加法
+			{
+				for(j=1;j<=i;j++)
+				{
+					if((num1==number1[j]&&num2==number2[j])||(num1==number2[j]&&num2==number1[j]))
+					//判断加数是否同时重复
+					{
+					break;
+					}
+				}
+				if(i>j)
+				{
+					i--;
+					continue;
+				}
+				else
+				{
+					if(num1+num2<=100)
+					{
+						System.out.println(i+":"+num1+"+"+num2+"=");
+						//输出加法试题
+						number3[i]=num1+num2;
+						continue;
+					}
+					else
+					{
+						i--;
+						continue;
+					}
+				}
+			}
+			else
+				//减法
+			{
+				for(k=1;k<=i;k++)
+					//判断减数和被减数是否同时重复
+				{
+					if(num1==number1[k]&&num2==number2[k])
+					{
+					break;
+					}
+				}
+				if(i>=k)
+				{
+					i--;
+					continue;
+				}
+				if(num1-num2>=0)
+				{
+					System.out.println(i+":"+num1+"-"+num2+"=");
+					//输出减法号习题
+					number3[i]=num1-num2;
+					continue;
+				}
+				else
+				{
+					i--;
+					continue;
+				}
+			}
+		}
+		System.out.println("参考答案:");
+		for(int i=1;i<=50;i++)
+			//顺序输出结果
+		{
+			System.out.println(i+":"+number3[i]);
+		}
+}
+}
+}
